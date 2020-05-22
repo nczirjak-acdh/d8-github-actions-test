@@ -54,7 +54,7 @@ jobs:
     
     - name: copy sqlite db
       run: |
-        mkdir drupal/sites/default/files
+        mkdir -p drupal/sites/default/files 
         cp inst/sites/default/files/.ht.sqlite drupal/sites/default/files/.ht.sqlite
     
     - name: install drupal base with sqlite
