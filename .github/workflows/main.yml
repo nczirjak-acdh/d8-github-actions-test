@@ -39,9 +39,14 @@ jobs:
       run: |
         mkdir -p drupal/sites/default/files 
         cp inst/sites/default/files/.ht.sqlite drupal/sites/default/files/.ht.sqlite
-    
+
+    #vendor/drush/drush/drush site-install standard --db-url=sqlite://sites/default/files/.ht.sqlite 
+      
     - name: install drupal base with sqlite
-      run: cd drupal && vendor/drush/drush/drush site-install standard --db-url=sqlite://sites/default/files/.ht.sqlite && cd -
+      run: |
+        cd drupal
+        vendor/drush/drush/drush cutie --yes
+        cd -
       
     - name: copy plugin to drupal
       run: |
