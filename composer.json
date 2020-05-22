@@ -22,7 +22,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Drupal\\acdh_repo_gui\\Object\\": "src/Object"
+            "Drupal\\acdh_repo_gui\\Object\\": "src/Object",
+	    "Drupal\\Core\\Controller\\ControllerBase\\": "[web-root]/core/lib/Drupal/Core/Controller"	
         }
     },
     "extra": {
