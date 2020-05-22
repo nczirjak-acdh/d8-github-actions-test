@@ -26,12 +26,12 @@ jobs:
             
     #- name: clone drupal code
     #  run: git clone --branch 8.8.x https://git.drupalcode.org/project/drupal.git
-  
+   #composer create-project laravel/laravel=4.1.27 your-project-name --prefer-dist
     - name: install drupal
       run:  composer create-project drupal/recommended-project drupal  
   
     - name: drupal composer update
-      run: cd drupal && composer require drush/drush && cd -
+      run: cd drupal && composer update && composer require drush/drush && composer require phpunit/phpunit && cd -
       
     - name: check drush
       run: |
@@ -40,8 +40,8 @@ jobs:
     
     - name: copy sqlite db
       run: |
-        mkdir -p drupal/sites/default/files 
-        cp inst/sites/default/files/.ht.sqlite drupal/sites/default/files/.ht.sqlite
+        mkdir -p drupal/web/sites/default/files 
+        cp inst/sites/default/files/.ht.sqlite drupal/web/sites/default/files/.ht.sqlite
 
     #vendor/drush/drush/drush site-install standard --db-url=sqlite://sites/default/files/.ht.sqlite 
     #composer create-project drupal/recommended-project drupal  
@@ -53,13 +53,13 @@ jobs:
       
     - name: copy plugin to drupal
       run: |
-        mkdir -p drupal/modules/arche-gui
-        for d in $(pwd)/*; do ln -s "$d" "drupal/modules/arche-gui"; done
+        mkdir -p drupal/web/modules/arche-gui
+        for d in $(pwd)/*; do ln -s "$d" "drupal/web/modules/arche-gui"; done
     
     - name: check directories
       run: |
         ls -la  
-        cd drupal/modules && ls -la
+        cd drupal/web/modules && ls -la
         cd arche-gui && ls -la
         
     # sudo service mysql start
@@ -85,7 +85,7 @@ jobs:
     - name: test
       run: |
         mkdir -p build/logs
-        ./drupal/vendor/phpunit/phpunit/phpunit --configuration ./drupal/modules/arche-gui/phpunit.xml 
+        ./drupal/vendor/phpunit/phpunit/phpunit --configuration ./drupal/web/modules/arche-gui/phpunit.xml 
         
     - name: coveralls
       run: |
