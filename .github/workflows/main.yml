@@ -43,9 +43,9 @@ jobs:
     #vendor/drush/drush/drush site-install standard --db-url=sqlite://sites/default/files/.ht.sqlite 
     #composer create-project drupal/recommended-project drupal  
     - name: install drupal base with sqlite
-      run: |        
-        cd drupal
-        vendor/drush/drush/drush pm-download --drupal-project-rename=drupal drupal-8.5.x
+      run: |  
+        composer create-project drupal/recommended-project drupal      
+        cd drupal        
         vendor/drush/drush/drush site:install standard -vvv --db-url='sqlite://sites/default/files/.ht.sqlite'
         cd -
       
