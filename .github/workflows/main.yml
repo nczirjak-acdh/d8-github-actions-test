@@ -48,10 +48,12 @@ jobs:
       run: mkdir drupal && cd drupal && composer require drush/drush && cd -
       
     - name: check drush
-      run: cd drupal && vendor/drush/drush/drush status && cd -
+      run: |
+        cd drupal && vendor/drush/drush/drush status && cd -
+        drupal/vendor/drush/drush/drush --help
       
     - name: install drupal base with sqlite
-      run: cd drupal && vendor/drush/drush/drush qd --profile=minimal --cache --core=drupal-8.0.x --yes  %% cd -
+      run: cd drupal && vendor/drush/drush/drush qd --root --profile=minimal --cache --core=drupal-8.0.x --yes  %% cd -
       
     - name: copy plugin to drupal
       run: |
