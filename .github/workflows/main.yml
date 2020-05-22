@@ -45,7 +45,7 @@ jobs:
     - name: install drupal base with sqlite
       run: |        
         cd drupal
-        vendor/drush/drush/drush site:install standard --db-url='sqlite://sites/default/files/.ht.sqlite'
+        vendor/drush/drush/drush site:install standard -vvv --db-url='sqlite://sites/default/files/.ht.sqlite'
         cd -
       
     - name: copy plugin to drupal
