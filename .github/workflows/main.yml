@@ -50,7 +50,7 @@ jobs:
     - name: check drush
       run: |
         cd drupal && vendor/drush/drush/drush status && cd -
-        drupal/vendor/drush/drush/drush help
+        drupal/vendor/drush/drush/drush list
       
     - name: install drupal base with sqlite
       run: cd drupal && vendor/drush/drush/drush qd --root --profile=minimal --cache --core=drupal-8.0.x --yes  %% cd -
