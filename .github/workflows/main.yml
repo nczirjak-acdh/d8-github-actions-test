@@ -41,11 +41,10 @@ jobs:
         cp inst/sites/default/files/.ht.sqlite drupal/sites/default/files/.ht.sqlite
 
     #vendor/drush/drush/drush site-install standard --db-url=sqlite://sites/default/files/.ht.sqlite 
-      
+    #composer create-project drupal/recommended-project drupal  
     - name: install drupal base with sqlite
-      run: |
+      run: |        
         cd drupal
-        vendor/drush/drush/drush dl drupal
         vendor/drush/drush/drush site:install standard --db-url='sqlite://sites/default/files/.ht.sqlite'
         cd -
       
