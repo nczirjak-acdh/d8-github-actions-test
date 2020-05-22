@@ -45,6 +45,7 @@ jobs:
     - name: install drupal base with sqlite
       run: |        
         cd drupal
+        vendor/drush/drush/drush pm-download --drupal-project-rename=drupal drupal-8.5.x
         vendor/drush/drush/drush site:install standard -vvv --db-url='sqlite://sites/default/files/.ht.sqlite'
         cd -
       
