@@ -20,10 +20,10 @@ jobs:
       
     - name: update sqlite3
       run: sudo apt-get install libsqlite3-dev
-    
-    - name: update sqlite326
-      run: sudo apt-get install libsqlite3-3
-             
+      
+    - name: checksqlite version
+      run: sqlite3
+               
     - name: composer update
       run: composer update
      # Composer.
