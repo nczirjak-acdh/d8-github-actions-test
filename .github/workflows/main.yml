@@ -23,10 +23,7 @@ jobs:
       run: |
         export PATH="$HOME/.composer/vendor/bin:$PATH"
         echo $PATH  
-            
-    #- name: clone drupal code
-    #  run: git clone --branch 8.8.x https://git.drupalcode.org/project/drupal.git
-   #composer create-project laravel/laravel=4.1.27 your-project-name --prefer-dist
+
     - name: install drupal
       run:  composer create-project drupal/recommended-project drupal  
   
@@ -38,12 +35,12 @@ jobs:
         cd drupal && vendor/drush/drush/drush status && cd -
         drupal/vendor/drush/drush/drush list
     
-    - name: copy sqlite db
-      run: |
-        mkdir -p drupal/web/sites/default/files 
-        cp inst/sites/default/files/.ht.sqlite drupal/web/sites/default/files/.ht.sqlite
+   # - name: copy sqlite db
+    #  run: |
+     #   mkdir -p drupal/web/sites/default/files 
+      #  cp inst/sites/default/files/.ht.sqlite drupal/web/sites/default/files/.ht.sqlite
 
-    #vendor/drush/drush/drush site-install standard --db-url=sqlite://sites/default/files/.ht.sqlite 
+    
     #composer create-project drupal/recommended-project drupal  
     - name: install drupal base with sqlite
       run: |              
@@ -62,21 +59,7 @@ jobs:
         cd drupal/web/modules && ls -la
         cd arche-gui && ls -la
         
-    # sudo service mysql start
-    # mysql -uroot -proot -e "CREATE DATABASE drupal"
-  
-    #- name: install drupal with sqlite
-    #  run: |
-    #    ls -la
-    #    cd drupal 
-    #    vendor/drush/drush/drush site-install --db-url="mysql://root:password@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/drupal"
-    #    cd -
-
-#- name: install drupal mysql db
- #     run: |        
-  #      cd drupal && drush --yes site-install standard --db-url="mysql://root:root@127.0.0.1/drupal"
-   #     ls -la
-
+   
     - name: start web server
       run: |
         cd drupal && vendor/drush/drush/drush runserver 127.0.0.1:8080 &
