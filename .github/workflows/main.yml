@@ -14,9 +14,15 @@ jobs:
     steps:
         # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-           
+    
+    - name: update ubuntu
+      run: sudo apt-get update
+      
     - name: update sqlite3
       run: sudo apt-get install libsqlite3-dev
+    
+    - name: update sqlite326
+      run: sudo apt-get install libsqlite3-3
              
     - name: composer update
       run: composer update
