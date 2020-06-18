@@ -46,7 +46,7 @@ jobs:
         echo $PATH  
 
     - name: install drupal
-      run:  composer create-project drupal/recommended-project drupal  
+      run:  composer create-project drupal/recommended-project:8.8.0 drupal  
 
     - name: check sqlite file
       run: ls -la drupal/web/sites/
