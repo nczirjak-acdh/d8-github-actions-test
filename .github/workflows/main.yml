@@ -26,13 +26,12 @@ jobs:
     
     - name: install sqlite manually
       run: |
-        wget https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/sqlite3/3.32.2-2/sqlite3_3.32.2.orig.tar.xz
-        ls -la
+        wget https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/sqlite3/3.32.2-2/sqlite3_3.32.2.orig.tar.xz       
         tar xvf sqlite3_3.32.2.orig.tar.xz 
         cd sqlite3-3.32.2/
-        ./configure
-        make
-        make install
+        sudo ./configure
+        sudo make
+        sudo make install
     
     - name: checksqlite version2
       run: sqlite3 --version
