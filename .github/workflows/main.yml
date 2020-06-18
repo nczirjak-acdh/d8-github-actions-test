@@ -28,7 +28,7 @@ jobs:
       run:  composer create-project drupal/recommended-project drupal  
 
     - name: check sqlite file
-      run: ls -la drupal/sites/default/files
+      run: ls -la drupal
   
     - name: drupal composer update
       run: cd drupal && composer update && composer require drush/drush && composer require phpunit/phpunit && cd -
