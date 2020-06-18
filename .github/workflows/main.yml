@@ -28,7 +28,10 @@ jobs:
       run:  composer create-project drupal/recommended-project drupal  
 
     - name: check sqlite file
-      run: ls -la drupal
+      run: ls -la drupal/web/sites/
+    
+    - name: update sqlite3
+      run: sudo apt-get install libsqlite3
   
     - name: drupal composer update
       run: cd drupal && composer update && composer require drush/drush && composer require phpunit/phpunit && cd -
