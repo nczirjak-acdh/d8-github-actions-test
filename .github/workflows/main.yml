@@ -26,26 +26,19 @@ jobs:
 
     - name: install drupal
       run:  composer create-project drupal/recommended-project drupal  
+
+    - name: check sqlite file
+      run: ls -la drupal/sites/default/files
   
     - name: drupal composer update
       run: cd drupal && composer update && composer require drush/drush && composer require phpunit/phpunit && cd -
       
-    - name: check drush
-      run: |
-        cd drupal && vendor/drush/drush/drush status && cd -
-        drupal/vendor/drush/drush/drush list
-    
-   # - name: copy sqlite db
-    #  run: |
-     #   mkdir -p drupal/web/sites/default/files 
-      #  cp inst/sites/default/files/.ht.sqlite drupal/web/sites/default/files/.ht.sqlite
-
-    
-    #composer create-project drupal/recommended-project drupal  
+  
+    #vendor/drush/drush/drush site:install standard -vvv --db-url='sqlite://sites/default/files/.ht.sqlite'
     - name: install drupal base with sqlite
       run: |              
         cd drupal        
-        vendor/drush/drush/drush site:install standard -vvv --db-url='sqlite://sites/default/files/.ht.sqlite'
+        vendor/drush/drush/drush site:install standard -vvv --db-url='sqlite://tmp/test.db'
         cd -
       
     - name: copy plugin to drupal
