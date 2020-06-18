@@ -28,7 +28,7 @@ jobs:
       run: |
         wget https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/sqlite3/3.32.2-2/sqlite3_3.32.2.orig.tar.xz
         ls -la
-        tar xvfz sqlite3_3.32.2.orig.tar.xz 
+        tar xvf sqlite3_3.32.2.orig.tar.xz 
         cd sqlite3-3.32.2/
         ./configure
         make
